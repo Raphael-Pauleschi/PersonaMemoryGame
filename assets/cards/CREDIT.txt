@@ -1,0 +1,24 @@
+*******************************************************************
+*                                                                 *
+* Persona 4 Golden for Playstation Vita                           *
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+*                                                                 *
+* Raw Graphics Ripped by: Ryan Shrinefox                          *
+* Sprites Ripped by: Skyla Doragono                               *
+* Feel free to use without credit, but do not claim as your own!  *
+*                                                                 *
+* Special Thanks to:                                              *
+* Mr. Gas & Major_Tom                                             *
+*    File dumping without pfs protection                          *
+* Qwikrazor87                                                     *
+*    TN-V11 Bubble, GAME2VHBL plugin                              *
+* Nia Kurukan                                                     *
+*    Donating the game                                            *
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
+*                                                                 *
+* Hosted at The Spriter's Resource                                *
+*    http://www.spriters-resource.com/                            *
+*                                                                 *
+* Brought to you by Amicitia Hacking Forum                        *
+*    http://s15.zetaboards.com/Amicitia/index/                    *
+*******************************************************************
