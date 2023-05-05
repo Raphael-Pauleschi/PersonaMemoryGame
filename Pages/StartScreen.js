@@ -1,18 +1,19 @@
-import React, {useState, useContext, useLayoutEffect} from 'react'
-import {View, Text, TouchableOpacity, Image} from 'react-native'
-import {ThemeContext} from '../theme-handler/context'
+import React, { useState, useContext, useLayoutEffect } from 'react'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { ThemeContext } from '../theme-handler/context'
 import themes from '../theme-handler/Themes'
 import icons from '../theme-handler/ThemeIcon'
+import PersonalizedText from '../components/PersonalizedText'
 
-const StartScreen = ({navigation} ) =>{
+const StartScreen = ({ navigation }) => {
   const [difficulty, setDifficulty] = useState('easy');
   const [currentTheme, setCurrentTheme] = useState('light');
-  const {setTheme} = useContext(ThemeContext);
+  const { setTheme } = useContext(ThemeContext);
 
-  const handleStartGame = () =>{
-    navigation.navigate("Memory Game", {difficulty, currentTheme});
+  const handleStartGame = () => {
+    navigation.navigate("Memory Game", { difficulty, currentTheme });
   }
-useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false
     });
@@ -22,7 +23,7 @@ useLayoutEffect(() => {
     setCurrentTheme(theme);
   }
 
-  return(
+  return (
     <View style={themes[currentTheme].container}>
       <Text style={themes[currentTheme].title}>Select the difficult:</Text>
       <View style={themes[currentTheme].buttonsContainer}>
@@ -54,15 +55,15 @@ useLayoutEffect(() => {
             style={[themes[currentTheme].button, currentTheme === themeKey && themes[currentTheme].activeButton]}
             onPress={() => handleThemeChange(themeKey)}
           >
-            <Image style={{width: 30, height: 30, resizeMode:"cover"}}
-            source={icons[index]}
+            <Image style={{ width: 30, height: 30, resizeMode: "cover" }}
+              source={icons[index]}
 
-/>
+            />
           </TouchableOpacity>
         ))}
-      </View>      
+      </View>
 
-
+      <Text style={themes[currentTheme].title}>{PersonalizedText[0][currentTheme]}</Text>
       <TouchableOpacity style={themes[currentTheme].startButton} onPress={handleStartGame}>
         <Text style={themes[currentTheme].startButtonText}>Start</Text>
       </TouchableOpacity>
