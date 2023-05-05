@@ -1,39 +1,70 @@
-import React, {useState} from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
-import styles from './Style'
+import React, {useState, useContext, useLayoutEffect} from 'react'
+import {View, Text, TouchableOpacity, Image} from 'react-native'
+import {ThemeContext} from '../theme-handler/context'
+import themes from '../theme-handler/Themes'
+import icons from '../theme-handler/ThemeIcon'
 
-const StartScreen = ({navigation}) =>{
+const StartScreen = ({navigation} ) =>{
   const [difficulty, setDifficulty] = useState('easy');
+  const [currentTheme, setCurrentTheme] = useState('light');
+  const {setTheme} = useContext(ThemeContext);
 
   const handleStartGame = () =>{
-    navigation.navigate("Memory Game", difficulty)
+    navigation.navigate("Memory Game", {difficulty, currentTheme});
+  }
+useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false
+    });
+  }, [navigation]);
+  const handleThemeChange = (theme) => {
+    setTheme(theme);
+    setCurrentTheme(theme);
   }
 
   return(
-    <View style={styles.container}>
-      <Text style={styles.title}>Select the difficult:</Text>
-      <View style={styles.buttonsContainer}>
+    <View style={themes[currentTheme].container}>
+      <Text style={themes[currentTheme].title}>Select the difficult:</Text>
+      <View style={themes[currentTheme].buttonsContainer}>
         <TouchableOpacity
-          style={[styles.button, difficulty === 'easy' && styles.activeButton]}
+          style={[themes[currentTheme].button, difficulty === 'easy' && themes[currentTheme].activeButton]}
           onPress={() => setDifficulty('easy')}
         >
-          <Text style={styles.buttonText}>Easy</Text>
+          <Text style={themes[currentTheme].buttonText}>Easy</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, difficulty === 'medium' && styles.activeButton]}
+          style={[themes[currentTheme].button, difficulty === 'medium' && themes[currentTheme].activeButton]}
           onPress={() => setDifficulty('medium')}
         >
-          <Text style={styles.buttonText}>Medium</Text>
+          <Text style={themes[currentTheme].buttonText}>Medium</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, difficulty === 'hard' && styles.activeButton]}
+          style={[themes[currentTheme].button, difficulty === 'hard' && themes[currentTheme].activeButton]}
           onPress={() => setDifficulty('hard')}
         >
-          <Text style={styles.buttonText}>Hard</Text>
+          <Text style={themes[currentTheme].buttonText}>Hard</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.startButton} onPress={handleStartGame}>
-        <Text style={styles.startButtonText}>Start</Text>
+
+      <Text style={themes[currentTheme].title}>Select the theme:</Text>
+      <View style={themes[currentTheme].buttonsContainer}>
+        {Object.keys(themes).map((themeKey, index) => (
+          <TouchableOpacity
+            key={themeKey}
+            style={[themes[currentTheme].button, currentTheme === themeKey && themes[currentTheme].activeButton]}
+            onPress={() => handleThemeChange(themeKey)}
+          >
+            <Image style={{width: 30, height: 30, resizeMode:"cover"}}
+            source={icons[index]}
+
+/>
+          </TouchableOpacity>
+        ))}
+      </View>      
+
+
+      <TouchableOpacity style={themes[currentTheme].startButton} onPress={handleStartGame}>
+        <Text style={themes[currentTheme].startButtonText}>Start</Text>
       </TouchableOpacity>
     </View>
   )

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text,  TouchableOpacity } from 'react-native';
 import Card from '../components/Card';
-import styles from './Style';
 import images from '../components/CardContent';
+import themes from '../theme-handler/Themes'
 
 const GameScreen = ({ route, navigation }) => {
   const [cards, setCards] = useState([]);
@@ -16,10 +16,11 @@ const GameScreen = ({ route, navigation }) => {
       headerShown: false
     });
   }, [navigation]);
+  
   useEffect(() => {
     const newCards = [];
     let cardQuantity = 0;
-    switch (route.params) {
+    switch (route.params.difficulty) {
       case 'easy':
         cardQuantity = images.length / 3;
         break;
@@ -84,8 +85,8 @@ const GameScreen = ({ route, navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.cards}>
+    <View style={themes[route.params.currentTheme].container}>
+      <View style={themes[route.params.currentTheme].cards}>
         {cards.map((card) => (
           <TouchableOpacity
             key={card.id}
@@ -101,7 +102,7 @@ const GameScreen = ({ route, navigation }) => {
           </TouchableOpacity>
         ))}
       </View>
-      <Text style={styles.footer}>
+      <Text style={themes[route.params.currentTheme].footer}>
         Jogadas: {moves} | Tempo: {time} s
       </Text>
     </View>
