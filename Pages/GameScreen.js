@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Card from '../components/Card';
+import AvaliationPopup from '../components/AvaliationPopup';
 import images from '../components/CardContent';
 import imagesP5 from '../components/CardContentPhantom';
 import themes from '../theme-handler/Themes';
 
 const GameScreen = ({ route, navigation }) => {
+  const [showAvaliationPopup, setShowAvaliationPopup] = useState(false);
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
   const [gameOver, setGameOver] = useState(false);
@@ -49,10 +51,17 @@ const GameScreen = ({ route, navigation }) => {
   }, [route.params]);
 
   useEffect(() => {
-    if (gameOver) {
-      alert(`Parabéns! Você ganhou em ${moves} jogadas e ${time} segundos.`);
+    let timer;
+    if (!gameOver) {
+      timer = setTimeout(() => {
+        setTime(time + 1);
+      }, 1000);
     }
-  }, [gameOver]);
+    else {
+      setShowAvaliationPopup(true);
+    }
+    return () => clearTimeout(timer);
+  }, [time, gameOver]);
 
   const shuffleCards = (cards) => {
     for (let i = cards.length - 1; i > 0; i--) {
@@ -94,6 +103,13 @@ const GameScreen = ({ route, navigation }) => {
 
   return (
     <View style={themes[route.params.currentTheme].container}>
+      {showAvaliationPopup && (
+        <AvaliationPopup
+          difficulty={route.params.difficulty}
+          moves={moves}
+          time={time}
+        />
+      )}
       <View style={themes[route.params.currentTheme].cards}>
         {cards.map((card) => (
           <TouchableOpacity
@@ -113,7 +129,7 @@ const GameScreen = ({ route, navigation }) => {
         ))}
       </View>
       <Text style={themes[route.params.currentTheme].footer}>
-        Jogadas: {moves} | Tempo: {time} s
+        Moves: {moves} | Time: {time} s
       </Text>
     </View>
   );
