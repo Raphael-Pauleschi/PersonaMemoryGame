@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { View, Text,  TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Card from '../components/Card';
 import images from '../components/CardContent';
-import themes from '../theme-handler/Themes'
+import imagesP5 from '../components/CardContentPhantom';
+import themes from '../theme-handler/Themes';
 
 const GameScreen = ({ route, navigation }) => {
   const [cards, setCards] = useState([]);
@@ -11,29 +12,36 @@ const GameScreen = ({ route, navigation }) => {
   const [moves, setMoves] = useState(0);
   const [time, setTime] = useState(0);
 
- useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
-      headerShown: false
+      headerShown: false,
     });
   }, [navigation]);
-  
+
   useEffect(() => {
     const newCards = [];
     let cardQuantity = 0;
+    cardQuantity =
+      route.params.currentTheme == 'phantom' ? imagesP5.length : images.length;
     switch (route.params.difficulty) {
       case 'easy':
-        cardQuantity = images.length / 3;
+        cardQuantity = cardQuantity / 3;
         break;
       case 'medium':
-        cardQuantity = images.length / 2;
-        break;
-      case 'hard':
-        cardQuantity = images.length;
+        cardQuantity = cardQuantity / 2;
         break;
     }
     for (let i = 0; i < cardQuantity; i++) {
-      newCards.push({ id: i * 2, image: images[i], visible: false });
-      newCards.push({ id: i * 2 + 1, image: images[i], visible: false });
+      newCards.push({
+        id: i * 2,
+        image: route.params.currentTheme == 'phantom' ? imagesP5[i] : images[i],
+        visible: false,
+      });
+      newCards.push({
+        id: i * 2 + 1,
+        image: route.params.currentTheme == 'phantom' ? imagesP5[i] : images[i],
+        visible: false,
+      });
     }
 
     shuffleCards(newCards);
@@ -96,6 +104,8 @@ const GameScreen = ({ route, navigation }) => {
               image={
                 card.visible
                   ? card.image
+                  : route.params.currentTheme == 'phantom'
+                  ? require('../assets/cards/p5/card_back.png')
                   : require('../assets/cards/card_back.png')
               }
             />
