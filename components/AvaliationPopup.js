@@ -3,9 +3,10 @@ import { View, Text } from 'react-native';
 import Card from './Card';
 import { Button, Dialog } from '@rneui/themed';
 import avaliationMessage from './AvaliationText';
+import themes from '../theme-handler/Themes'
 
 let value = 1;
-const AvaliationPopup = ({ difficulty, moves, time }) => {
+const AvaliationPopup = ({ difficulty, moves, time, currentTheme }) => {
   const [visible, setVisible] = useState(true);
   console.log(moves)
   console.log(difficulty)
@@ -38,13 +39,15 @@ const AvaliationPopup = ({ difficulty, moves, time }) => {
 
   const PopUp = () => {
     return (
-      <Dialog isVisible={visible} onBackdropPress={toggleDialog}>
-      <View>
+      <Dialog 
+      isVisible={visible}
+       onBackdropPress={toggleDialog}
+       overlayStyle={themes[currentTheme].popup}>
         <Card
           image={avaliationMessage[value].img}
         />
-        <Text>{avaliationMessage[value].text}</Text>
-        </View>
+      <Text style= {themes[currentTheme].text}>{avaliationMessage[value].text}</Text>
+          
         <Dialog.Actions>
           <Dialog.Button title="Replay" onPress={() => console.log('test1')} />
           <Dialog.Button title="Go back" onPress={() => console.log('test2')} />

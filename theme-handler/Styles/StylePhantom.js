@@ -5,13 +5,22 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ab1111',
+    backgroundColor: '#fa1b1b',
+    color: '#F2E852',
+  },
+   popup: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fa1b1b',
     color: '#F2E852',
   },title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
      color: '#F2E852',
+  },
+   text:{
+ color: '#F2E852',
   },
   button: {
     padding: 10,
@@ -20,7 +29,7 @@ export default StyleSheet.create({
     marginRight: 10,
   },
   activeButton: {
-    backgroundColor: '#e81515',
+    backgroundColor: '#800000',
   },
   buttonText: {
     fontSize: 18,
@@ -30,7 +39,7 @@ export default StyleSheet.create({
   startButton: {
     padding: 10,
     borderRadius: 5,
-    backgroundColor: '#D92323',
+    backgroundColor: '#800000',
   },
   startButtonText: {
     fontSize: 18,

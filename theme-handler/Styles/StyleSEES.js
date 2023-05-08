@@ -7,11 +7,20 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#3F61A6',
     color: '#000',
+  },
+   popup: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3F61A6',
+    color: '#000',
   },title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
      color: '#F5FCFF',
+  },
+   text:{
+ color: '#FFF',
   },
   button: {
     padding: 10,

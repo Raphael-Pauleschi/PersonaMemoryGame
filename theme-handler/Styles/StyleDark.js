@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -7,11 +7,21 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#2C2C2C',
     color: '#F5FCFF',
-  },title: {
+  },
+    popup: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#2C2C2C',
+    color: '#F5FCFF',
+  },
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-     color: '#F5FCFF',
+    color: '#F5FCFF',
+  },
+  text: {
+    color: '#F5FCFF',
   },
   button: {
     padding: 10,
@@ -37,7 +47,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#D7D7D7',
   },
-   header: {
+  header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
