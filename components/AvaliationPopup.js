@@ -28,10 +28,10 @@ const AvaliationPopup = ({ difficulty, moves, time, currentTheme, navigation }) 
       else value = 5;
       break;
     case 'hard':
-      if (moves <= 41 && time <= 200)
+      if (moves <= 50 && time <= 150)
         value = 13
-      else if (moves <= 70 && time <= 300) value = 12;
-      else if (moves <= 100 && time <= 400) value = 11;
+      else if (moves <= 100 && time <= 200) value = 12;
+      else if (moves <= 200 && time <= 300) value = 11;
       else value = 10;
       break;
   }
