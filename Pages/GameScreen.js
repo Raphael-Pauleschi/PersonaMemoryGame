@@ -108,6 +108,8 @@ const GameScreen = ({ route, navigation }) => {
           difficulty={route.params.difficulty}
           moves={moves}
           time={time}
+          currentTheme={route.params.currentTheme}
+          navigation={navigation}
         />
       )}
       <View style={themes[route.params.currentTheme].cards}>

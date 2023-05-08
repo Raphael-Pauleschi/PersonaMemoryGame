@@ -6,10 +6,8 @@ import avaliationMessage from './AvaliationText';
 import themes from '../theme-handler/Themes'
 
 let value = 1;
-const AvaliationPopup = ({ difficulty, moves, time, currentTheme }) => {
+const AvaliationPopup = ({ difficulty, moves, time, currentTheme, navigation }) => {
   const [visible, setVisible] = useState(true);
-  console.log(moves)
-  console.log(difficulty)
   const toggleDialog = () => {
     setVisible(!visible);
   };
@@ -30,7 +28,8 @@ const AvaliationPopup = ({ difficulty, moves, time, currentTheme }) => {
       else value = 5;
       break;
     case 'hard':
-      if (moves <= 41 && time <= 200) value = 13;
+      if (moves <= 41 && time <= 200)
+        value = 13
       else if (moves <= 70 && time <= 300) value = 12;
       else if (moves <= 100 && time <= 400) value = 11;
       else value = 10;
@@ -43,14 +42,15 @@ const AvaliationPopup = ({ difficulty, moves, time, currentTheme }) => {
       isVisible={visible}
        onBackdropPress={toggleDialog}
        overlayStyle={themes[currentTheme].popup}>
+         <Text style= {themes[currentTheme].title}>{avaliationMessage[value].congratulation}</Text>
         <Card
           image={avaliationMessage[value].img}
         />
       <Text style= {themes[currentTheme].text}>{avaliationMessage[value].text}</Text>
           
         <Dialog.Actions>
-          <Dialog.Button title="Replay" onPress={() => console.log('test1')} />
-          <Dialog.Button title="Go back" onPress={() => console.log('test2')} />
+          <Dialog.Button title="Replay" onPress={() =>  navigation.navigate("Memory Game", {difficulty, currentTheme})} />
+          <Dialog.Button title="Go back" onPress={() =>  navigation.navigate("Start Game")} />
         </Dialog.Actions>
       </Dialog>
     );
